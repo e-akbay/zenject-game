@@ -2,9 +2,8 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Zenject;
 
-public class CharacterController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float forwardSpeed = 5f;
     [SerializeField] private float swerveSpeed = 5f;
     [SerializeField] public float maxX;
 
@@ -16,7 +15,7 @@ public class CharacterController : MonoBehaviour
     private void Update()
     {
         //always forward
-        transform.Translate(Vector3.forward * (forwardSpeed * Time.deltaTime));
+        // transform.Translate(Vector3.forward * (forwardSpeed * Time.deltaTime));
 
         if(_input == null) return;
         
