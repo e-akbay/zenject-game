@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Level
 {
-    public class LevelMover : MonoBehaviour, ILevelMover
+    public class LevelMover : ITickable, ILevelMover
     {
-        [SerializeField] private List<Transform> moveableObjects = new List<Transform>();
+        private List<Transform> _moveableObjects = new();
         private float _speed;
         private bool _running;
         
@@ -27,15 +28,22 @@ namespace Level
 
         public void AddMoveableObject(Transform moveable)
         {
-            moveableObjects.Add(moveable);
+            _moveableObjects.Add(moveable);
         }
 
-        private void Update()
+        public void RemoveMoveableObject(Transform moveable)
+        {
+            if(!_moveableObjects.Contains(moveable)) return;
+            
+            _moveableObjects.Remove(moveable);
+        }
+
+        public void Tick()
         {
             if(!_running) return;
-            for (int i = 0; i < moveableObjects.Count; i++)
+            for (int i = 0; i < _moveableObjects.Count; i++)
             {
-                moveableObjects[i].Translate(Vector3.back * (_speed * Time.deltaTime));
+                _moveableObjects[i].Translate(Vector3.back * (_speed * Time.deltaTime));
             }
             
         }

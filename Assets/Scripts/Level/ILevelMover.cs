@@ -8,5 +8,6 @@ namespace Level
         public void StartMovement();
         public void StopMovement();
         public void AddMoveableObject(Transform moveable);
+        public void RemoveMoveableObject(Transform moveable);
     }
 }

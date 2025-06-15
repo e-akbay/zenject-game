@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Obstacles;
 using UnityEngine;
 using Zenject;
 
@@ -11,9 +12,13 @@ namespace Level
         [SerializeField] private int initialGroundTileCount = 4;
         [SerializeField] private float groundTileLength = 10f;
         [SerializeField] private float deadZoneZ;
+        [SerializeField] private float obstacleSpawnZ;
+        [SerializeField] private Vector2 obstacleSpawnXMinMax;
         
         [Inject]
         private ILevelMover _levelMover;
+        [Inject]
+        private IObstacleSpawner _obstacleSpawner;
         
         private Queue<Transform> _groundTiles = new();
         private Transform _currentGroundTile;
@@ -36,6 +41,9 @@ namespace Level
             _levelMover.SetSpeed(5f);
             _levelMover.StartMovement();
             _currentGroundTile = _groundTiles.Dequeue();
+            
+            _obstacleSpawner.SetSpawnRate(2f);
+            _obstacleSpawner.SetSpawnPositionParameters(obstacleSpawnZ, obstacleSpawnXMinMax);
         }
 
         private void Update()
