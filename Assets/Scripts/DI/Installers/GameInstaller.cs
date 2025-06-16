@@ -20,6 +20,13 @@ namespace DI.Installers
         
         public override void InstallBindings()
         {
+            BindManagers();
+            BindUI();
+            BindSignals();
+        }
+
+        private void BindManagers()
+        {
             Container.BindInterfacesAndSelfTo<GameManager>().AsSingle();
 
 #if UNITY_EDITOR
@@ -36,18 +43,23 @@ namespace DI.Installers
                 .FromComponentInNewPrefab(obstaclePrefab).UnderTransformGroup("Obstacles");
 
             Container.BindInterfacesAndSelfTo<ObstacleSpawner>().AsSingle();
+        }
 
-            SignalBusInstaller.Install(Container);
-            Container.DeclareSignal<GameOverSignal>();
-            Container.DeclareSignal<GameStartedSignal>();
-            Container.DeclareSignal<GameRestartedSignal>();
-
+        private void BindUI()
+        {
             Container.BindInterfacesAndSelfTo<UIManager>().AsSingle();
             
             Container.Bind<GameEndScreen>().FromInstance(gameOverScreen).AsSingle();
             Container.Bind<GameStartScreen>().FromInstance(startScreen).AsSingle();
             Container.Bind<InGameScreen>().FromInstance(gameScreen).AsSingle();
-            
+        }
+
+        private void BindSignals()
+        {
+            SignalBusInstaller.Install(Container);
+            Container.DeclareSignal<GameOverSignal>();
+            Container.DeclareSignal<GameStartedSignal>();
+            Container.DeclareSignal<GameRestartedSignal>();
         }
     }
 }

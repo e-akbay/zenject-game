@@ -12,7 +12,6 @@ namespace UI
         [Inject] private GameStartScreen _startScreen;
         [Inject] private InGameScreen _gameScreen;
         
-        
         public void ShowGameOver()
         {
             _startScreen.Hide();

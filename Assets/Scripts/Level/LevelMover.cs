@@ -44,7 +44,6 @@ namespace Level
             {
                 _moveableObjects[i].Translate(Vector3.back * (_speed * Time.deltaTime));
             }
-            
         }
     }
 }

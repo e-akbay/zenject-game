@@ -28,6 +28,8 @@ namespace Level
         
         private Queue<Transform> _groundTiles = new();
         private Transform _currentGroundTile;
+        
+        private const string GroundTileName = "Ground";
 
         private void Start()
         {
@@ -36,7 +38,7 @@ namespace Level
             for (int i = 0; i < initialGroundTileCount; i++)
             {
                 var tile = Instantiate(groundTilePrefab, levelRoot);
-                tile.name = "GroundTile" + i;
+                tile.name = GroundTileName + i;
                 tile.transform.position = new Vector3(0f, 0f, lastZPosition);
                 _groundTiles.Enqueue(tile);
                 

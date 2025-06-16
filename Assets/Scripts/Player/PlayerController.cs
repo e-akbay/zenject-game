@@ -16,9 +16,6 @@ namespace Player
     
         private void Update()
         {
-            //always forward
-            // transform.Translate(Vector3.forward * (forwardSpeed * Time.deltaTime));
-
             if(_input == null) return;
 
             if (_input.IsClicking && !_movementStarted)
