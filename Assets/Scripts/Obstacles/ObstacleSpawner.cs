@@ -1,6 +1,7 @@
 ﻿using Level;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Obstacles
 {
@@ -32,8 +33,15 @@ namespace Obstacles
             _spawnXMinMax = xMinMax;
         }
 
+        public void ClearObstacles()
+        {
+            _obstaclePool.ClearObstacles();
+        }
+
         public void Tick()
         {
+            if(_spawnRate <= 0f) return; // not spawning 
+            
             //spawn obstacles
             _counter += Time.deltaTime;
             if (_counter >= _spawnRate)

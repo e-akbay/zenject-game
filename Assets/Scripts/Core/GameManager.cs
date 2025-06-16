@@ -1,35 +1,25 @@
-﻿using System;
-using UnityEngine;
+﻿using DI.Signals;
+using Zenject;
 
 namespace Core
 {
-    public class GameManager : MonoBehaviour, IGameManager
+    public class GameManager : IGameManager
     {
-        public GameState currentState = GameState.Warmup;
-        
-        private void Start()
-        {
-            Initialize();
-        }
-
-        public void Initialize()
-        {
-            //load level etc etc
-        }
+        [Inject] SignalBus _signalBus;
 
         public void StartGame()
         {
-            currentState = GameState.Playing;
+            _signalBus.Fire<GameStartedSignal>();
         }
 
         public void EndGame()
         {
-            currentState = GameState.Over;
+            _signalBus.Fire<GameOverSignal>();
         }
 
         public void RestartGame()
         {
-            currentState = GameState.Warmup;
+            _signalBus.Fire<GameRestartedSignal>();
         }
     }
 }
