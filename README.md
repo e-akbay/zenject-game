@@ -2,34 +2,34 @@
 
 A simple endless runner game built in Unity to demonstrate Zenject dependency injection.
 
-## 🎮 Overview
+## Overview
 
-Basic infinity runner where the player moves left/right to avoid obstacles. Game ends on collision and restarts immediately.
+Basic infinity runner where the player moves left/right to avoid obstacles.
 
-## ✨ Features
+## Features
 
 - Mouse/touch controls for left/right movement
 - Endless obstacle generation
 - Simple collision detection
 - Game over and restart system
 
-## 🔧 Technical Focus
+## Technical Focus
 
 This project was created primarily to practice and demonstrate **Zenject dependency injection** patterns in Unity. The game mechanics are intentionally minimal to keep focus on the DI architecture.
 
-## 🎯 Controls
+## Controls
 
 - **Mouse**: Click and drag to move player
 - **Touch**: Tap and drag to move player
 
-## 📋 Requirements
+## Requirements
 
-- Unity 2021.3 or later
+- Unity 6
 - Zenject package
 
-## 📝 Note
+##  Note
 
-This is a learning project focused on dependency injection implementation. No audio or visual effects included.
+This is a learning project focused on dependency injection implementation. No audio or visual included.
 
 ---
 
